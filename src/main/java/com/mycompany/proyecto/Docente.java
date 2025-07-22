@@ -23,7 +23,7 @@ public class Docente extends Persona{
     public void leer()
     {   Scanner sc=new Scanner(System.in);
     
-        System.out.println("Ingrese nombre: ");
+        System.out.println("Ingrese nombre:. ");
         nombre=sc.nextLine();
                 
         System.out.println("Ingrese ci: ");
