@@ -23,4 +23,24 @@ public class ControlAcademico {
             vecDoc[j].mostrar();
         }
     }
+    
+    public void agregarEstudiante(Estudiante e){
+        if(nroEst == 100){
+            System.out.println("no se pueden agregar mas estudiantes");
+        } else {
+            vecEst[nroEst] = e;
+            nroEst = nroEst + 1;
+            System.out.println("se agrego el estudiante");
+        }
+    }
+    
+    public void agregarDocente(Docente d){
+        if(nroDoc == 50){
+            System.out.println("no se pueden agregar mas docentes");
+        } else {
+            vecDoc[nroDoc] = d;
+            nroDoc = nroDoc + 1;
+            System.out.println("se agrego el docente");
+        }
+    } 
 }
