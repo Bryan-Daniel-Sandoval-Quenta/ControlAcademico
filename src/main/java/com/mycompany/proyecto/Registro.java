@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 
 public class Registro<T> {
+
     private T[] vecReg;
     private int nroReg;
     private String fechaModificacion;
@@ -10,7 +11,6 @@ public class Registro<T> {
         this.nroReg = nroReg;
         this.fechaModificacion = fechaModificacion;
     }
-
 
     public T[] getVecReg() {
         return vecReg;
@@ -35,4 +35,21 @@ public class Registro<T> {
     public void setFechaModificacion(String fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
+
+    public void agregar(T elemento) {
+        if (nroReg < vecReg.length) {
+            vecReg[nroReg] = elemento;
+            nroReg++;
+            fechaModificacion = java.time.LocalDate.now().toString();
+        } else {
+            System.out.println("No se puede agregar más elementos. Capacidad llena.");
+        }
+    }
+
+    public void mostrarTodo() {
+        for (int i = 0; i < nroReg; i++) {
+            System.out.println(vecReg[i]);
+        }
+    }
+
 }
