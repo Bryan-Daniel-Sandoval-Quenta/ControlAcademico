@@ -10,4 +10,34 @@ public class Persona {
         this.ci = ci;
         this.edad = edad;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCi() {
+        return ci;
+    }
+
+    public void setCi(int ci) {
+        this.ci = ci;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    
+    public void mostrar() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("CI: " + ci);
+        System.out.println("Edad: " + edad);
+    }
 }
