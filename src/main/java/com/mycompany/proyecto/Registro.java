@@ -1,5 +1,5 @@
 package com.mycompany.proyecto;
 
-public class Registro {
+public class Registro<T> {
     
 }
