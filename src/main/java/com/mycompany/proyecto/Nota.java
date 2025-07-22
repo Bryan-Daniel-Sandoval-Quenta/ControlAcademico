@@ -66,4 +66,3 @@ public class Nota {
         System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial);
     }
 }
-}
