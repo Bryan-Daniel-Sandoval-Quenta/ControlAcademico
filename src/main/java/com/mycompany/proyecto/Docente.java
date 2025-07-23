@@ -1,6 +1,8 @@
 package com.mycompany.proyecto;
+import java.io.Serializable;
 import java.util.Scanner;
-public class Docente extends Persona{
+
+public class Docente extends Persona implements Serializable{
     protected String tipoDocente;
     protected double sueldo;
     protected String MateriasAsignadas[]=new String[4];
@@ -64,5 +66,36 @@ public class Docente extends Persona{
         {   System.out.println(""+MateriasAsignadas[i]);
         }
     }
-    
+
+    public String getTipoDocente() {
+        return tipoDocente;
+    }
+
+    public void setTipoDocente(String tipoDocente) {
+        this.tipoDocente = tipoDocente;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public String[] getMateriasAsignadas() {
+        return MateriasAsignadas;
+    }
+
+    public void setMateriasAsignadas(String[] MateriasAsignadas) {
+        this.MateriasAsignadas = MateriasAsignadas;
+    }
+
+    public int getNroMateria() {
+        return nroMateria;
+    }
+
+    public void setNroMateria(int nroMateria) {
+        this.nroMateria = nroMateria;
+    }
 }

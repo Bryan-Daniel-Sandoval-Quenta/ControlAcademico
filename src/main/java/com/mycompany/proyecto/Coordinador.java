@@ -1,6 +1,6 @@
 package com.mycompany.proyecto;
 import java.util.Scanner;
-public class Coordinador extends Persona {
+public class Coordinador extends Docente {
     private String semestreCoordinado;
     private String areaResponsable;
     
@@ -24,5 +24,21 @@ public class Coordinador extends Persona {
     public void mostrar()
     { System.out.println("Smestre Coordinador: "+semestreCoordinado);
         System.out.println("Area Responsable: "+areaResponsable);
+    }
+
+    public String getSemestreCoordinado() {
+        return semestreCoordinado;
+    }
+
+    public void setSemestreCoordinado(String semestreCoordinado) {
+        this.semestreCoordinado = semestreCoordinado;
+    }
+
+    public String getAreaResponsable() {
+        return areaResponsable;
+    }
+
+    public void setAreaResponsable(String areaResponsable) {
+        this.areaResponsable = areaResponsable;
     }
 }
