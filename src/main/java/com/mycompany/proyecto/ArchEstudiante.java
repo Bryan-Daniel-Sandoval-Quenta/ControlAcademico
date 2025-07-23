@@ -1,14 +1,16 @@
 package com.mycompany.proyecto;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class ArchEstudiante {
     private String nomArchEst;
-    private Estudiante est;
+    private List<Estudiante> lista;
 
     public ArchEstudiante(String nomArchEst) {
         this.nomArchEst = nomArchEst;
+        this.lista = new ArrayList<>();
+        cargar();  // Carga los datos al iniciar
     }
 
     public void crear() throws IOException {
@@ -16,67 +18,41 @@ public class ArchEstudiante {
         if (f.exists()) {
             System.out.println("El archivo ya existe.");
         } else {
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomArchEst))) {
-                System.out.println("Archivo creado correctamente.");
-            }
+            guardar();
+            System.out.println("Archivo creado correctamente.");
         }
     }
 
-    public void adicionar() throws IOException {
+    public void adicionar() {
         Scanner sc = new Scanner(System.in);
         String resp;
 
-        try (ObjectOutputStream out = new File(nomArchEst).exists()
-                ? new AddObjectOutputStream(new FileOutputStream(nomArchEst, true))
-                : new ObjectOutputStream(new FileOutputStream(nomArchEst))) {
+        do {
+            Estudiante est = new Estudiante();
+            est.leer();
+            lista.add(est);
 
-            do {
-                est = new Estudiante();
-                est.leer();  
-                out.writeObject(est);
+            System.out.print("¿Desea agregar otro estudiante? (s/n): ");
+            resp = sc.nextLine();
+        } while (resp.equalsIgnoreCase("s"));
 
-                System.out.print("¿Desea agregar otro estudiante? (s/n): ");
-                resp = sc.nextLine();
-            } while (resp.equalsIgnoreCase("s"));
+        guardar();
+    }
 
-        } catch (Exception e) {
-            System.out.println("Error al adicionar: " + e.getMessage());
+    public void listar() {
+        if (lista.isEmpty()) {
+            System.out.println("No hay estudiantes registrados.");
+        } else {
+            for (Estudiante est : lista) {
+                est.mostrar();
+            }
         }
     }
 
-    public void listar() throws IOException, ClassNotFoundException {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst))) {
-            while (true) {
-                est = (Estudiante) in.readObject();
-                est.mostrar();  
-            }
-        } catch (EOFException e) {
-            System.out.println("Fin del listado.");
-        }
-    }
+    public void eliminar(int regUni) {
+        boolean eliminado = lista.removeIf(est -> est.getRegistroUniversitario() == regUni);
 
-    public void eliminar(int regUni) throws IOException, ClassNotFoundException {
-        boolean eliminado = false;
-
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst));
-             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("copia.dat"))) {
-
-            while (true) {
-                est = (Estudiante) in.readObject();
-                if (est.getRegistroUniversitario() == regUni) {
-                    eliminado = true;
-                } else {
-                    out.writeObject(est);
-                }
-            }
-        } catch (EOFException e) {
-            // Fin del archivo
-        }
-
-        File original = new File(nomArchEst);
-        File copia = new File("copia.dat");
-        original.delete();
-        copia.renameTo(original);
+        guardar();
 
         if (eliminado)
             System.out.println("Estudiante eliminado.");
@@ -84,35 +60,25 @@ public class ArchEstudiante {
             System.out.println("Estudiante no encontrado.");
     }
 
-    public void modificar(int regUni) throws IOException, ClassNotFoundException {
-        boolean modificado = false;
+    public void modificar(int regUni) {
         Scanner sc = new Scanner(System.in);
+        boolean modificado = false;
 
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst));
-             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("copia.dat"))) {
-
-            while (true) {
-                est = (Estudiante) in.readObject();
-                if (est.getRegistroUniversitario() == regUni) {
-                    System.out.print("¿Desea modificar el nombre? (s/n): ");
-                    String resp = sc.nextLine();
-                    if (resp.equalsIgnoreCase("s")) {
-                        System.out.print("Nuevo nombre: ");
-                        String nuevoNombre = sc.nextLine();
-                        est.setNombre(nuevoNombre);  
-                        modificado = true;
-                    }
+        for (Estudiante est : lista) {
+            if (est.getRegistroUniversitario() == regUni) {
+                System.out.print("¿Desea modificar el nombre? (s/n): ");
+                String resp = sc.nextLine();
+                if (resp.equalsIgnoreCase("s")) {
+                    System.out.print("Nuevo nombre: ");
+                    String nuevoNombre = sc.nextLine();
+                    est.setNombre(nuevoNombre);
+                    modificado = true;
+                    break;
                 }
-                out.writeObject(est);
             }
-        } catch (EOFException e) {
-            // Fin del archivo
         }
 
-        File original = new File(nomArchEst);
-        File copia = new File("copia.dat");
-        original.delete();
-        copia.renameTo(original);
+        guardar();
 
         if (modificado)
             System.out.println("Modificación realizada.");
@@ -120,22 +86,40 @@ public class ArchEstudiante {
             System.out.println("Estudiante no encontrado.");
     }
 
-    public void buscar(int regUni) throws IOException, ClassNotFoundException {
+    public void buscar(int regUni) {
         boolean encontrado = false;
 
+        for (Estudiante est : lista) {
+            if (est.getRegistroUniversitario() == regUni) {
+                System.out.println("Estudiante encontrado:");
+                est.mostrar();
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Estudiante no encontrado.");
+        }
+    }
+
+    private void guardar() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomArchEst))) {
+            out.writeObject(lista);
+        } catch (IOException e) {
+            System.out.println("Error al guardar: " + e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void cargar() {
+        File f = new File(nomArchEst);
+        if (!f.exists()) return;
+
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst))) {
-            while (true) {
-                est = (Estudiante) in.readObject();
-                if (est.getRegistroUniversitario() == regUni) {
-                    System.out.println("Estudiante encontrado:");
-                    est.mostrar();
-                    encontrado = true;
-                }
-            }
-        } catch (EOFException e) {
-            if (!encontrado) {
-                System.out.println("Estudiante no encontrado.");
-            }
+            lista = (List<Estudiante>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al cargar archivo: " + e.getMessage());
         }
     }
 }

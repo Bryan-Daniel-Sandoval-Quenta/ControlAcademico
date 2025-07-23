@@ -6,7 +6,7 @@ public class Asistencia {
     private boolean asistencia;
     private String materia;
 
-    public Asistencia(String fecha, int ci, int registroUniv, String materia, boolean asistencia) {
+    public Asistencia(String fecha, String materia, boolean asistencia) {
         this.fecha = fecha;
         this.asistencia = asistencia;
         this.materia = materia;
