@@ -6,8 +6,8 @@ public class Docente extends Persona{
     protected String MateriasAsignadas[]=new String[4];
     protected int nroMateria;
     
-    public Docente(String nombre,int ci,int edad,String tipoDocente,double sueldo,int nroMateria)
-    {   super(nombre,ci,edad);
+    public Docente(String nombre,int ci,int edad,String tipoDocente,double sueldo,int nroMateria){
+        super(nombre,ci,edad);
         this.tipoDocente=tipoDocente;
         this.sueldo=sueldo;
         
