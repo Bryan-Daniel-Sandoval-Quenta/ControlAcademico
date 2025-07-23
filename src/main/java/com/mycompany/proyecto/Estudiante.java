@@ -1,6 +1,8 @@
 package com.mycompany.proyecto;
 
-public class Estudiante extends Persona{
+import java.io.Serializable;
+
+public class Estudiante extends Persona implements Serializable{
     private int registroUniversitario;
     private String carrera;
     private String materiasInscrito[];
