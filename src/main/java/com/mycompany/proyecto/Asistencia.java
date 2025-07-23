@@ -43,7 +43,7 @@ public class Asistencia {
     }
 
     public void mostrar() {
-        System.out.println("Asistencia registrada: " + fecha + ", " + materia + " - " + ("Presente" : "Ausente"));
+        System.out.println("Asistencia registrada: " + fecha + ", " + materia + " - " + "("Presente" : "Ausente")");
     }
 }
     
