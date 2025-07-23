@@ -55,7 +55,7 @@ public class ArchEstudiante {
         }
     }
 
-    public void eliminar(String regUni) throws IOException, ClassNotFoundException {
+    public void eliminar(int regUni) throws IOException, ClassNotFoundException {
         boolean eliminado = false;
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst));
@@ -63,7 +63,7 @@ public class ArchEstudiante {
 
             while (true) {
                 est = (Estudiante) in.readObject();
-                if (est.getRegUniv().equals(regUni)) {
+                if (est.getRegistroUniversitario() == regUni) {
                     eliminado = true;
                 } else {
                     out.writeObject(est);
@@ -84,7 +84,7 @@ public class ArchEstudiante {
             System.out.println("Estudiante no encontrado.");
     }
 
-    public void modificar(String regUni) throws IOException, ClassNotFoundException {
+    public void modificar(int regUni) throws IOException, ClassNotFoundException {
         boolean modificado = false;
         Scanner sc = new Scanner(System.in);
 
@@ -93,7 +93,7 @@ public class ArchEstudiante {
 
             while (true) {
                 est = (Estudiante) in.readObject();
-                if (est.getRegUniv().equals(regUni)) {
+                if (est.getRegistroUniversitario() == regUni) {
                     System.out.print("¿Desea modificar el nombre? (s/n): ");
                     String resp = sc.nextLine();
                     if (resp.equalsIgnoreCase("s")) {
@@ -120,13 +120,13 @@ public class ArchEstudiante {
             System.out.println("Estudiante no encontrado.");
     }
 
-    public void buscar(String regUni) throws IOException, ClassNotFoundException {
+    public void buscar(int regUni) throws IOException, ClassNotFoundException {
         boolean encontrado = false;
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst))) {
             while (true) {
                 est = (Estudiante) in.readObject();
-                if (est.getRegUniv().equals(regUni)) {
+                if (est.getRegistroUniversitario() == regUni) {
                     System.out.println("Estudiante encontrado:");
                     est.mostrar();
                     encontrado = true;
