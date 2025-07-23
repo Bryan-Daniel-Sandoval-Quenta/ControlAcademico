@@ -59,10 +59,13 @@ public class Nota {
         System.out.println("Fecha: " + fecha);
         System.out.println("Materia: " + materia);
         System.out.println("Tipo de Parcial: " + tipoParcial);
-        System.out.println("Docente Evaluador: " + docenteEvaluador.getNombre());
+       
     }
 
     public void mostrar() {
         System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial);
+          if(docenteEvaluador != null){
+            System.out.println("Evaluador: " + docenteEvaluador.getNombre() + " - " +docenteEvaluador.getMateria());
+      }
     }
 }
