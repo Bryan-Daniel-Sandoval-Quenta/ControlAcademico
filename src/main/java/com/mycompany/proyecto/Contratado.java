@@ -11,6 +11,10 @@ public class Contratado extends Docente{
         this.pagoHora=pagoHora;
     }
     
+    public Contratado(){
+        super();
+    }
+    
     @Override
     public void leer(){
         Scanner a =new Scanner(System.in);

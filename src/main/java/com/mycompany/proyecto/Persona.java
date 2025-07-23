@@ -12,6 +12,8 @@ public class Persona {
         this.ci = ci;
         this.edad = edad;
     }
+    
+    public Persona(){}
 
     public String getNombre() {
         return nombre;

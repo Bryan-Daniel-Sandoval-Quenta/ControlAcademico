@@ -9,6 +9,11 @@ public class Coordinador extends Docente {
         this.semestreCoordinado = semestreCoordinado;
         this.areaResponsable = areaResposable;
     }
+    
+    public Coordinador(){
+        super();
+    }
+    
     @Override
     public void leer()
     {   Scanner sc=new Scanner(System.in);

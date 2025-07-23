@@ -1,16 +1,14 @@
 package com.mycompany.proyecto;
 
 import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 public class ArchDocente {
     private String nomArchDoc;
-    private List<Docente> lista;
+    private Docente doc;
 
     public ArchDocente(String nomArchDoc) {
         this.nomArchDoc = nomArchDoc;
-        this.lista = new ArrayList<>();
-        cargar(); 
     }
 
     public void crear() throws IOException {
@@ -18,42 +16,80 @@ public class ArchDocente {
         if (f.exists()) {
             System.out.println("El archivo ya existe.");
         } else {
-            guardar();
-            System.out.println("Archivo creado correctamente.");
-        }
-    }
-
-    public void adicionar() {
-        Scanner sc = new Scanner(System.in);
-        String resp;
-
-        do {
-            Docente d = new Docente("", 0, 0, "", 0.0, 0);  
-            d.leer();
-            lista.add(d);
-
-            System.out.print("¿Desea agregar otro docente? (s/n): ");
-            resp = sc.nextLine();
-        } while (resp.equalsIgnoreCase("s"));
-
-        guardar();
-    }
-
-    public void listar() {
-        if (lista.isEmpty()) {
-            System.out.println("No hay docentes registrados.");
-        } else {
-            for (Docente d : lista) {
-                d.mostrar();
-                System.out.println("---------------------");
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomArchDoc))) {
+                System.out.println("Archivo creado correctamente.");
             }
         }
     }
 
-    public void eliminar(int ci) {
-        boolean eliminado = lista.removeIf(d -> d.getCi() == ci);
+    public void adicionar() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        String resp;
 
-        guardar();
+        try (ObjectOutputStream out = new File(nomArchDoc).exists()
+                ? new AddObjectOutputStream(new FileOutputStream(nomArchDoc, true))
+                : new ObjectOutputStream(new FileOutputStream(nomArchDoc))) {
+
+            do {
+                doc = new Docente();
+                doc.leer();  
+                out.writeObject(doc);
+
+                System.out.print("¿Desea agregar otro docente? (s/n): ");
+                resp = sc.nextLine();
+            } while (resp.equalsIgnoreCase("s"));
+
+        } catch (Exception e) {
+            System.out.println("Error al adicionar: " + e.getMessage());
+        }
+    }
+    
+    public void adicionarDocente(Docente doc) {
+        try (ObjectOutputStream out = new File(nomArchDoc).exists()
+                ? new AddObjectOutputStream(new FileOutputStream(nomArchDoc, true))
+                : new ObjectOutputStream(new FileOutputStream(nomArchDoc))) {
+
+            out.writeObject(doc);
+            System.out.println("Docente añadido correctamente.");
+
+        } catch (IOException e) {
+            System.out.println("Error al adicionar docente: " + e.getMessage());
+        }
+    }
+
+    public void listar() throws IOException, ClassNotFoundException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchDoc))) {
+            while (true) {
+                doc = (Docente) in.readObject();
+                doc.mostrar();  
+            }
+        } catch (EOFException e) {
+            System.out.println("Fin del listado.");
+        }
+    }
+
+    public void eliminar(int ci) throws IOException, ClassNotFoundException {
+        boolean eliminado = false;
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchDoc));
+             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("copiaDoc.dat"))) {
+
+            while (true) {
+                doc = (Docente) in.readObject();
+                if (doc.getCi() == ci) {
+                    eliminado = true;
+                } else {
+                    out.writeObject(doc);
+                }
+            }
+        } catch (EOFException e) {
+            // Fin del archivo
+        }
+
+        File original = new File(nomArchDoc);
+        File copia = new File("copiaDoc.dat");
+        original.delete();
+        copia.renameTo(original);
 
         if (eliminado)
             System.out.println("Docente eliminado.");
@@ -61,26 +97,35 @@ public class ArchDocente {
             System.out.println("Docente no encontrado.");
     }
 
-    public void modificar(int ci) {
-        Scanner sc = new Scanner(System.in);
+    public void modificar(int ci) throws IOException, ClassNotFoundException {
         boolean modificado = false;
+        Scanner sc = new Scanner(System.in);
 
-        for (Docente d : lista) {
-            if (d.getCi() == ci) {
-                System.out.print("¿Desea modificar el sueldo? (s/n): ");
-                String resp = sc.nextLine();
-                if (resp.equalsIgnoreCase("s")) {
-                    System.out.print("Nuevo sueldo: ");
-                    double nuevoSueldo = sc.nextDouble();
-                    d.setSueldo(nuevoSueldo);
-                    sc.nextLine(); 
-                    modificado = true;
-                    break;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchDoc));
+             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("copiaDoc.dat"))) {
+
+            while (true) {
+                doc = (Docente) in.readObject();
+                if (doc.getCi() == ci) {
+                    System.out.print("¿Desea modificar el nombre? (s/n): ");
+                    String resp = sc.nextLine();
+                    if (resp.equalsIgnoreCase("s")) {
+                        System.out.print("Nuevo nombre: ");
+                        String nuevoNombre = sc.nextLine();
+                        doc.setNombre(nuevoNombre);  
+                        modificado = true;
+                    }
                 }
+                out.writeObject(doc);
             }
+        } catch (EOFException e) {
+            // Fin del archivo
         }
 
-        guardar();
+        File original = new File(nomArchDoc);
+        File copia = new File("copiaDoc.dat");
+        original.delete();
+        copia.renameTo(original);
 
         if (modificado)
             System.out.println("Modificación realizada.");
@@ -88,40 +133,22 @@ public class ArchDocente {
             System.out.println("Docente no encontrado.");
     }
 
-    public void buscar(int ci) {
+    public void buscar(int ci) throws IOException, ClassNotFoundException {
         boolean encontrado = false;
 
-        for (Docente d : lista) {
-            if (d.getCi() == ci) {
-                System.out.println("Docente encontrado:");
-                d.mostrar();
-                encontrado = true;
-                break;
-            }
-        }
-
-        if (!encontrado) {
-            System.out.println("Docente no encontrado.");
-        }
-    }
-
-    private void guardar() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomArchDoc))) {
-            out.writeObject(lista);
-        } catch (IOException e) {
-            System.out.println("Error al guardar: " + e.getMessage());
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private void cargar() {
-        File f = new File(nomArchDoc);
-        if (!f.exists()) return;
-
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchDoc))) {
-            lista = (List<Docente>) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error al cargar archivo: " + e.getMessage());
+            while (true) {
+                doc = (Docente) in.readObject();
+                if (doc.getCi() == ci) {
+                    System.out.println("Docente encontrado:");
+                    doc.mostrar();
+                    encontrado = true;
+                }
+            }
+        } catch (EOFException e) {
+            if (!encontrado) {
+                System.out.println("Docente no encontrado.");
+            }
         }
     }
 }

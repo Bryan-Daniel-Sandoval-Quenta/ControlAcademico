@@ -23,6 +23,10 @@ public class Estudiante extends Persona implements Serializable{
     
     public Estudiante(){
         super("", 0, 0);
+        this.materiasInscrito = new String[7];
+        for(int i = 0; i < materiasInscrito.length; i++){
+            materiasInscrito[i] = "";
+        }
     }
     
     @Override
@@ -44,12 +48,15 @@ public class Estudiante extends Persona implements Serializable{
         
         System.out.println("Ingrese edad:  ");
         this.edad = lec.nextInt();
+        lec.nextLine();
         
         System.out.println("Ingrese registro universitario:  ");
         this.registroUniversitario = lec.nextInt();
+        lec.nextLine();
         
         System.out.println("Ingrese carrera:  ");
         this.carrera = lec.nextLine();
+        lec.nextLine();
         
         System.out.println("Ingrese la cantidad de materias inscritas:  ");
         this.nroMaterias = lec.nextInt();

@@ -22,6 +22,11 @@ public class Docente extends Persona implements Serializable{
             MateriasAsignadas[i]=sc.nextLine();
         }
     }
+    
+    public Docente(){
+        super("", 0, 0);
+    }
+    
     public void leer()
     {   Scanner sc=new Scanner(System.in);
     

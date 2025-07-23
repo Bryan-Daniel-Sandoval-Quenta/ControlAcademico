@@ -12,6 +12,10 @@ public class Titular extends Docente {
         this.antiguedadAños = antiguedadAños;
         this.nivelFormacion = nivelFormacion;
     }
+    
+    public Titular(){
+        super();
+    }
 
     public void leer() {
         Scanner b = new Scanner(System.in);
