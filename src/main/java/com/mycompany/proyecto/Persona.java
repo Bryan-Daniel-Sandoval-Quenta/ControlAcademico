@@ -1,5 +1,7 @@
 package com.mycompany.proyecto;
 
+import java.util.Scanner;
+
 public class Persona {
     protected String nombre;
     protected int ci;
@@ -39,5 +41,19 @@ public class Persona {
         System.out.println("Nombre: " + nombre);
         System.out.println("CI: " + ci);
         System.out.println("Edad: " + edad);
+    }
+    
+    public void leer(){
+        Scanner sc=new Scanner(System.in);
+    
+        System.out.println("Ingrese nombre:.  ");
+        nombre=sc.nextLine();
+                
+        System.out.println("Ingrese ci: ");
+        ci=sc.nextInt();
+        
+        System.out.println("Ingrese edad: ");
+        edad=sc.nextInt();
+        sc.nextLine();
     }
 }

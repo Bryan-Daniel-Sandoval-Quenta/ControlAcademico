@@ -10,8 +10,11 @@ public class Contratado extends Docente{
         this.horasContratado=horasContratado;
         this.pagoHora=pagoHora;
     }
+    
+    @Override
     public void leer(){
         Scanner a =new Scanner(System.in);
+        super.leer();
         System.out.println("Ingrese las horas de contrato");
         horasContratado= a.nextInt();
         System.out.println("Ingrese el pago por hora");

@@ -11,6 +11,13 @@ public class Registro<T> {
         this.nroReg = nroReg;
         this.fechaModificacion = fechaModificacion;
     }
+    
+    @SuppressWarnings("unchecked")
+    public Registro(String fechaModificacion) {
+        this.vecReg = (T[]) new Object[4];
+        this.nroReg = 0;
+        this.fechaModificacion = fechaModificacion;
+    }
 
     public T[] getVecReg() {
         return vecReg;

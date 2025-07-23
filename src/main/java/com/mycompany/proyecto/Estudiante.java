@@ -17,8 +17,8 @@ public class Estudiante extends Persona implements Serializable{
         this.carrera = carrera;
         this.nroMaterias = 0;
         this.materiasInscrito = new String[7];
-        this.regisNota = new Registro<>(null,0,"");
-        this.regisAsistencia = new Registro<>(null,0,"");
+        this.regisNota = new Registro<>("");
+        this.regisAsistencia = new Registro<>("");
     }
     
     public Estudiante(){
@@ -36,11 +36,41 @@ public class Estudiante extends Persona implements Serializable{
     
     public void leer(){
         Scanner lec = new Scanner(System.in);
+        System.out.println("Ingrese nombre:.  ");
         this.nombre = lec.nextLine();
+        
+        System.out.println("Ingrese ci:  ");
         this.ci = lec.nextInt();
+        
+        System.out.println("Ingrese edad:  ");
         this.edad = lec.nextInt();
+        
+        System.out.println("Ingrese registro universitario:  ");
         this.registroUniversitario = lec.nextInt();
+        
+        System.out.println("Ingrese carrera:  ");
         this.carrera = lec.nextLine();
+        
+        System.out.println("Ingrese la cantidad de materias inscritas:  ");
+        this.nroMaterias = lec.nextInt();
+        
+        for (int i = 0; i < nroMaterias; i++){
+            materiasInscrito[i] = lec.nextLine();
+        }
+        
+        /*System.out.println("Ingrese la cantidad de notas que registrara (maximo 4):  ");
+        int n = 0;
+        n = lec.nextInt();
+        for(int i = 0; i < n; i++){
+            this.registrarNota();
+        }
+        
+        System.out.println("Ingrese la cantidad de asistencias que registrara (maximo 4):  ");
+        int l = 0;
+        n = lec.nextInt();
+        for(int i = 0; i < l; i++){
+            this.registrarNota();
+        }*/
     }
     
     public void adicionarMateria(String materia){

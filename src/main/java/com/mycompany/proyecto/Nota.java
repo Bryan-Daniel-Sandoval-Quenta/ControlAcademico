@@ -1,5 +1,7 @@
 package com.mycompany.proyecto;
 
+import java.util.Scanner;
+
 public class Nota {
    
     private double valor;
@@ -56,9 +58,22 @@ public class Nota {
     }
 
     public void leer() {
-        System.out.println("Fecha: " + fecha);
-        System.out.println("Materia: " + materia);
-        System.out.println("Tipo de Parcial: " + tipoParcial);
+        Scanner sc=new Scanner(System.in);
+    
+        System.out.println("Ingrese el valor:.  ");
+        valor=sc.nextInt();
+                
+        System.out.println("Ingrese la fecha: ");
+        fecha=sc.nextLine();
+        
+        System.out.println("Ingrese la materia: ");
+        materia=sc.nextLine();
+        
+        System.out.println("Ingrese Tipo de parcial: ");
+        tipoParcial=sc.nextLine();
+        
+        System.out.println("Ingrese los datos del docente: ");
+        docenteEvaluador.leer();
        
     }
 

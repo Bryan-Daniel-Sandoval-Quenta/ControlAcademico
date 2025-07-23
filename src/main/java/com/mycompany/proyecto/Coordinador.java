@@ -9,8 +9,11 @@ public class Coordinador extends Docente {
         this.semestreCoordinado = semestreCoordinado;
         this.areaResponsable = areaResposable;
     }
+    @Override
     public void leer()
     {   Scanner sc=new Scanner(System.in);
+    
+        super.leer();
     
         System.out.println("Semestre Coordinado");
         semestreCoordinado=sc.nextLine();
