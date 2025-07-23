@@ -52,6 +52,18 @@ public class Estudiante extends Persona implements Serializable{
             System.out.println("Inscripcion con exito a " + materia);
         }
     }
+    
+    public void registrarNota(){
+        Nota n = new Nota("", "", "", null);
+        n.leer();
+        regisNota.agregar(n);
+    }
+    
+    public void registrarAsistencia(){
+        Asistencia a = new Asistencia("", "", false);
+        a.leer();
+        regisAsistencia.agregar(a);
+    }
 
     public int getRegistroUniversitario() {
         return registroUniversitario;

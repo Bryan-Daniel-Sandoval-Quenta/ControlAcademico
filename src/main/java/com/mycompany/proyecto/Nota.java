@@ -8,7 +8,7 @@ public class Nota {
     private String tipoParcial;
     private Docente docenteEvaluador;
 
-    public Nota(String fecha, int ci, int registroUniv, String materia, String tipoParcial, Docente docenteEvaluador) {
+    public Nota(String fecha, String materia, String tipoParcial, Docente docenteEvaluador) {
         this.fecha = fecha;
         this.materia = materia;
         this.tipoParcial = tipoParcial;
@@ -65,7 +65,7 @@ public class Nota {
     public void mostrar() {
         System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial);
           if(docenteEvaluador != null){
-            System.out.println("Evaluador: " + docenteEvaluador.getNombre() + " - " +docenteEvaluador.getMateria());
+            System.out.println("Evaluador: " + docenteEvaluador.getNombre());
       }
     }
 }
