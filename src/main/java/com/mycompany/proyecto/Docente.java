@@ -79,7 +79,8 @@ public class Docente extends Persona implements Serializable{
     }
     @Override
     public void mostrar()
-    {   super.mostrar();
+    {   System.out.println("******DATOS DE DOCENTE******");
+        super.mostrar();
         System.out.println("Tipo de Docente:"+tipoDocente);
         System.out.println("Sueldo:"+sueldo);
         System.out.println("Numero de materias del docente:"+nroMateria);
@@ -87,6 +88,7 @@ public class Docente extends Persona implements Serializable{
         for(int i=0;i<nroMateria;i++)
         {   System.out.println(""+MateriasAsignadas[i]);
         }
+        System.out.println("");
     }
 
     public String getTipoDocente() {

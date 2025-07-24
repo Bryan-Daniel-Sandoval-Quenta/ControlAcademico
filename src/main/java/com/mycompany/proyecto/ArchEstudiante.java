@@ -67,6 +67,7 @@ public class ArchEstudiante {
             }
         } catch (EOFException e) {
             System.out.println("Fin del listado.");
+            System.out.println("");
         }
     }
 
@@ -152,5 +153,63 @@ public class ArchEstudiante {
                 System.out.println("Estudiante no encontrado.");
             }
         }
+    }
+    
+    public void regisNota(int regUni) throws IOException, ClassNotFoundException {
+        boolean registrado = false;
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst));
+             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("copia.dat"))) {
+
+            while (true) {
+                est = (Estudiante) in.readObject();
+                if (est.getRegistroUniversitario() == regUni) {
+                    est.registrarNota();
+                    registrado = true;
+                }
+                out.writeObject(est);
+            }
+        } catch (EOFException e) {
+            // Fin del archivo
+        }
+
+        File original = new File(nomArchEst);
+        File copia = new File("copia.dat");
+        original.delete();
+        copia.renameTo(original);
+
+        if (registrado)
+            System.out.println("Nota registrada correctamente.");
+        else
+            System.out.println("Estudiante no encontrado.");
+    }
+    
+    public void regisAsistencia(int regUni) throws IOException, ClassNotFoundException {
+        boolean registrado = false;
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst));
+             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("copia.dat"))) {
+
+            while (true) {
+                est = (Estudiante) in.readObject();
+                if (est.getRegistroUniversitario() == regUni) {
+                    est.registrarAsistencia();
+                    registrado = true;
+                }
+                out.writeObject(est);
+            }
+        } catch (EOFException e) {
+            // Fin del archivo
+        }
+
+        File original = new File(nomArchEst);
+        File copia = new File("copia.dat");
+        original.delete();
+        copia.renameTo(original);
+
+        if (registrado)
+            System.out.println("Asistencia registrada correctamente.");
+        else
+            System.out.println("Estudiante no encontrado.");
     }
 }

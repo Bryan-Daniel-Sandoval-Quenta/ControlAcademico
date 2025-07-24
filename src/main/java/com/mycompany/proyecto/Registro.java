@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 
 public class Registro<T> implements Serializable{
 
@@ -13,10 +14,9 @@ public class Registro<T> implements Serializable{
         this.nroReg = nroReg;
         this.fechaModificacion = fechaModificacion;
     }
-    
-    @SuppressWarnings("unchecked")
-    public Registro(String fechaModificacion) {
-        this.vecReg = (T[]) new Object[4];
+
+    public Registro(Class<T> clazz, String fechaModificacion){
+        this.vecReg = (T[]) Array.newInstance(clazz, 4); 
         this.nroReg = 0;
         this.fechaModificacion = fechaModificacion;
     }
@@ -60,5 +60,4 @@ public class Registro<T> implements Serializable{
             System.out.println(vecReg[i]);
         }
     }
-
 }

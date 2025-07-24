@@ -9,14 +9,16 @@ public class Nota implements Serializable{
     private String fecha;
     private String materia;
     private String tipoParcial;
-    private Docente docenteEvaluador;
+    private String docenteEvaluador;
 
-    public Nota(String fecha, String materia, String tipoParcial, Docente docenteEvaluador) {
+    public Nota(String fecha, String materia, String tipoParcial, String docenteEvaluador) {
         this.fecha = fecha;
         this.materia = materia;
         this.tipoParcial = tipoParcial;
         this.docenteEvaluador = docenteEvaluador;
     }
+    
+    public Nota(){}
 
     public double getValor() {
         return valor;
@@ -50,11 +52,11 @@ public class Nota implements Serializable{
         this.tipoParcial = tipoParcial;
     }
 
-    public Docente getDocenteEvaluador() {
+    public String getDocenteEvaluador() {
         return docenteEvaluador;
     }
 
-    public void setDocenteEvaluador(Docente docenteEvaluador) {
+    public void setDocenteEvaluador(String docenteEvaluador) {
         this.docenteEvaluador = docenteEvaluador;
     }
 
@@ -63,6 +65,7 @@ public class Nota implements Serializable{
     
         System.out.println("Ingrese el valor:.  ");
         valor=sc.nextInt();
+        fecha=sc.nextLine();
                 
         System.out.println("Ingrese la fecha: ");
         fecha=sc.nextLine();
@@ -73,15 +76,12 @@ public class Nota implements Serializable{
         System.out.println("Ingrese Tipo de parcial: ");
         tipoParcial=sc.nextLine();
         
-        System.out.println("Ingrese los datos del docente: ");
-        docenteEvaluador.leer();
+        System.out.println("Ingrese el nombre del docente: ");
+        docenteEvaluador = sc.nextLine();
        
     }
 
     public void mostrar() {
-        System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial);
-          if(docenteEvaluador != null){
-            System.out.println("Evaluador: " + docenteEvaluador.getNombre());
-      }
+        System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial + " - " + valor + docenteEvaluador);
     }
 }

@@ -13,6 +13,8 @@ public class Asistencia implements Serializable{
         this.asistencia = asistencia;
         this.materia = materia;
     }
+    
+    public Asistencia(){}
 
     public String getFecha() {
         return fecha;

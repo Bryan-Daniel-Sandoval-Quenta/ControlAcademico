@@ -17,8 +17,8 @@ public class Estudiante extends Persona implements Serializable{
         this.carrera = carrera;
         this.nroMaterias = 0;
         this.materiasInscrito = new String[7];
-        this.regisNota = new Registro<>("");
-        this.regisAsistencia = new Registro<>("");
+        this.regisNota = new Registro<>(Nota.class, "");
+        this.regisAsistencia = new Registro<>(Asistencia.class, "");
     }
     
     public Estudiante(){
@@ -27,13 +27,13 @@ public class Estudiante extends Persona implements Serializable{
         for(int i = 0; i < materiasInscrito.length; i++){
             materiasInscrito[i] = "";
         }
-        this.regisNota = new Registro<>("");
-        this.regisAsistencia = new Registro<>("");
+        this.regisNota = new Registro<>(Nota.class, "");
+        this.regisAsistencia = new Registro<>(Asistencia.class, "");
     }
     
     @Override
     public void mostrar(){
-        System.out.println("DATOS DE ESTUDIANTE");
+        System.out.println("******DATOS DE ESTUDIANTE******");
         super.mostrar();
         System.out.println("registro universitario: " + registroUniversitario);
         System.out.println("carrera: " + carrera);
@@ -41,6 +41,28 @@ public class Estudiante extends Persona implements Serializable{
         for(int i = 0; i < nroMaterias; i++){
             System.out.println("materia " + (i+1) + ": " + materiasInscrito[i]);
         }
+        
+        System.out.println("\n--- NOTAS REGISTRADAS ---");
+        if (regisNota != null && regisNota.getNroReg() > 0) {
+            for (Nota n : regisNota.getVecReg()) {
+                if (n != null)
+                    n.mostrar();
+            }
+        } else {
+            System.out.println("No hay notas registradas.");
+        }
+
+        System.out.println("\n--- ASISTENCIAS REGISTRADAS ---");
+        if (regisAsistencia != null && regisAsistencia.getNroReg() > 0) {
+            for (Asistencia a : regisAsistencia.getVecReg()) {
+                if (a != null)
+                    a.mostrar();
+            }
+        } else {
+            System.out.println("No hay asistencias registradas.");
+        }
+        
+        System.out.println("");
     }
     
     public void leer(){
@@ -85,7 +107,7 @@ public class Estudiante extends Persona implements Serializable{
     }
     
     public void registrarNota(){
-        Nota n = new Nota("", "", "", null);
+        Nota n = new Nota();
         n.leer();
         regisNota.agregar(n);
     }

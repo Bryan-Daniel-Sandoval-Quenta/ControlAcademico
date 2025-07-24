@@ -11,16 +11,10 @@ public class Proyecto {
         //archEst.crear();
         //archDoc.crear();
         
-        //Estudiante est1 = new Estudiante();
-        //Coordinador DocCoo1 = new Coordinador();
-        //est1.leer();
-        //DocCoo1.leer();
+        archEst.adicionar();
+        //archDoc.adicionar();
         
-        //archEst.adicionarEstudiante(est1);
-        //archDoc.adicionarDocente(DocCoo1);
-        
-        //archEst.adicionar();
         archEst.listar();
-        //archDoc.listar();
+        archDoc.listar();
     }
 }

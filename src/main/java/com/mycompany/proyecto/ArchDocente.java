@@ -40,7 +40,7 @@ public class ArchDocente {
             } while (resp.equalsIgnoreCase("s"));
 
         } catch (Exception e) {
-            System.out.println("Error al adicionar: " + e.getMessage());
+            System.out.println("Error al adicionar: " + e.getMessage());    
         }
     }
     
@@ -65,6 +65,7 @@ public class ArchDocente {
             }
         } catch (EOFException e) {
             System.out.println("Fin del listado.");
+            System.out.println("");
         }
     }
 
