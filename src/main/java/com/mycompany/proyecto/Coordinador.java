@@ -22,7 +22,7 @@ public class Coordinador extends Docente implements Serializable{
     
         super.leer();
     
-        System.out.println("Semestre Coordinado");
+        System.out.println("Ingrese Semestre para Coordinar");
         semestreCoordinado=sc.nextLine();
         
         System.out.println("Area Responsable: ");
@@ -33,7 +33,7 @@ public class Coordinador extends Docente implements Serializable{
     
     public void mostrar()
     {   super.mostrar();
-        System.out.println("Smestre Coordinador: "+semestreCoordinado);
+        System.out.println("Semestre para Coordinar: "+semestreCoordinado);
         System.out.println("Area Responsable: "+areaResponsable);
     }
 
