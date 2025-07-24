@@ -7,11 +7,12 @@ public class Proyecto {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ArchEstudiante archEst = new ArchEstudiante("nomArchEst.dat");
         ArchDocente archDoc = new ArchDocente("nomArchDoc.dat");
+        ArchDocente archDoc2 = new ArchDocente("nomArchDocStr.dat");
         
         //archEst.crear();
         //archDoc.crear();
         
-        archEst.adicionar();
+        //archEst.adicionar();
         //archDoc.adicionar();
         
         archEst.listar();
