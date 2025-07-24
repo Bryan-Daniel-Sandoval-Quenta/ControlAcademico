@@ -4,11 +4,19 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ArchEstudiante {
-    private String nomArchEst;
+    private static ArchEstudiante instancia; 
+    private static final String nomArchEst = "nomArchEst.dat"; 
     private Estudiante est;
 
-    public ArchEstudiante(String nomArchEst) {
-        this.nomArchEst = nomArchEst;
+    private ArchEstudiante() {
+        // Constructor privado
+    }
+
+    public static ArchEstudiante getInstancia() {
+        if (instancia == null) {
+            instancia = new ArchEstudiante();
+        }
+        return instancia;
     }
 
     public void crear() throws IOException {

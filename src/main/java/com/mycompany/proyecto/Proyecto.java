@@ -5,9 +5,8 @@ import java.io.IOException;
 public class Proyecto {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ArchEstudiante archEst = new ArchEstudiante("nomArchEst.dat");
-        ArchDocente archDoc = new ArchDocente("nomArchDoc.dat");
-        ArchDocente archDoc2 = new ArchDocente("nomArchDocStr.dat");
+        ArchEstudiante archEst = ArchEstudiante.getInstancia();
+        ArchDocente archDoc = ArchDocente.getInstancia();
         
         //archEst.crear();
         //archDoc.crear();

@@ -16,8 +16,8 @@ public class SistemaAcademicoGUI extends JFrame {
         setLayout(new BorderLayout());
 
         // Inicializar archivos
-        archEst = new ArchEstudiante("nomArchEst.dat");
-        archDoc = new ArchDocente("nomArchDoc.dat");
+        ArchEstudiante archEst = ArchEstudiante.getInstancia();
+        ArchDocente archDoc = ArchDocente.getInstancia();
 
         // Panel superior con botones
         JPanel panelBotones = new JPanel();

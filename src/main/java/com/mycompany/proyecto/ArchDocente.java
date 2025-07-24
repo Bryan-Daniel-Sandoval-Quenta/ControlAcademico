@@ -4,11 +4,19 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ArchDocente {
-    private String nomArchDoc;
+    private static ArchDocente instancia; // 🔹 Única instancia Singleton
+    private static final String nomArchDoc = "nomArchDoc.dat"; // 🔹 Nombre fijo
     private Docente doc;
 
-    public ArchDocente(String nomArchDoc) {
-        this.nomArchDoc = nomArchDoc;
+    private ArchDocente() {
+        // Constructor privado para impedir instancias externas
+    }
+
+    public static ArchDocente getInstancia() {
+        if (instancia == null) {
+            instancia = new ArchDocente();
+        }
+        return instancia;
     }
 
     public void crear() throws IOException {
