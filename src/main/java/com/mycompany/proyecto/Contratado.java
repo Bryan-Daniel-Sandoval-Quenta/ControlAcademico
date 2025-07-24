@@ -1,8 +1,9 @@
 package com.mycompany.proyecto;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Contratado extends Docente{
+public class Contratado extends Docente implements Serializable{
     private int horasContratado;
     private double pagoHora;
     public Contratado(String nombre,int ci,int edad,String tipoDocente,double sueldo,int nroMateria,int horasContratado,double pagoHora){

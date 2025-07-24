@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
+import java.io.Serializable;
 import java.util.Scanner;
-public class Coordinador extends Docente {
+public class Coordinador extends Docente implements Serializable{
     private String semestreCoordinado;
     private String areaResponsable;
     

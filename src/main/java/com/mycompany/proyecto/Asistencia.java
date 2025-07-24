@@ -1,6 +1,8 @@
 package com.mycompany.proyecto;
 
-public class Asistencia {
+import java.io.Serializable;
+
+public class Asistencia implements Serializable{
    
     private String fecha;
     private boolean asistencia;

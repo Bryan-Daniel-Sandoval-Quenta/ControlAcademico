@@ -1,8 +1,9 @@
 package com.mycompany.proyecto;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Nota {
+public class Nota implements Serializable{
    
     private double valor;
     private String fecha;

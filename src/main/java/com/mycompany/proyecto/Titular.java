@@ -1,8 +1,9 @@
 package com.mycompany.proyecto;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Titular extends Docente {
+public class Titular extends Docente implements Serializable{
 
     private int antiguedadAños;
     private String nivelFormacion;

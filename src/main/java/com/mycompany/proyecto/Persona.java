@@ -1,8 +1,9 @@
 package com.mycompany.proyecto;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Persona {
+public class Persona implements Serializable{
     protected String nombre;
     protected int ci;
     protected int edad;

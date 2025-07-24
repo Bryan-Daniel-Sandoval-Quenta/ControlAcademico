@@ -1,6 +1,8 @@
 package com.mycompany.proyecto;
 
-public class Registro<T> {
+import java.io.Serializable;
+
+public class Registro<T> implements Serializable{
 
     private T[] vecReg;
     private int nroReg;
