@@ -11,6 +11,7 @@ public class Coordinador extends Docente implements Serializable{
         this.areaResponsable = areaResposable;
     }
     
+    
     public Coordinador(){
         super();
     }
@@ -31,7 +32,8 @@ public class Coordinador extends Docente implements Serializable{
     
     
     public void mostrar()
-    { System.out.println("Smestre Coordinador: "+semestreCoordinado);
+    {   super.mostrar();
+        System.out.println("Smestre Coordinador: "+semestreCoordinado);
         System.out.println("Area Responsable: "+areaResponsable);
     }
 

@@ -15,12 +15,37 @@ public class Docente extends Persona implements Serializable{
         
         this.nroMateria=nroMateria;
         Scanner sc=new Scanner(System.in);
+        sc.nextLine();
         System.out.println("INGRESE MATERIAS");
         for (int i =0;i<nroMateria;i++)
         {   
             System.out.println("Materia"+(i+1)+":");
             MateriasAsignadas[i]=sc.nextLine();
         }
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCi() {
+        return ci;
+    }
+
+    public void setCi(int ci) {
+        this.ci = ci;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
     
     public Docente(){
@@ -30,16 +55,7 @@ public class Docente extends Persona implements Serializable{
     public void leer()
     {   Scanner sc=new Scanner(System.in);
     
-        System.out.println("Ingrese nombre:.  ");
-        nombre=sc.nextLine();
-                
-        System.out.println("Ingrese ci: ");
-        ci=sc.nextInt();
-        
-        System.out.println("Ingrese edad: ");
-        edad=sc.nextInt();
-        sc.nextLine();
-        
+        super.leer();
         System.out.println("Ingrese Tipo docente: ");
         tipoDocente=sc.nextLine();
         
@@ -48,6 +64,7 @@ public class Docente extends Persona implements Serializable{
         
         System.out.println("Ingrese Numero de materias: ");
         nroMateria=sc.nextInt();
+        sc.nextLine();
         
         System.out.println("INGRESE MATERIAS: ");
         for (int i =0;i<nroMateria;i++)
@@ -60,9 +77,7 @@ public class Docente extends Persona implements Serializable{
          
     }
     public void mostrar()
-    {   System.out.println("Nombre: "+nombre);
-        System.out.println("CI: "+ci);
-        System.out.println("Edad: "+edad);
+    {   super.mostrar();
         System.out.println("Tipo de Docente:"+tipoDocente);
         System.out.println("Sueldo:"+sueldo);
         System.out.println("Numero de materias del docente:"+nroMateria);
