@@ -38,12 +38,12 @@ public class Asistencia {
 
     public void leer() {
         System.out.println("Fecha: " + fecha);
-        System.out.println("Asistencia: " + ("Presente" : "Ausente"));
+        System.out.println("Asistencia: " + (asistencia ?"Presente" : "Ausente"));
         System.out.println("Materia: " + materia);
     }
 
     public void mostrar() {
-        System.out.println("Asistencia registrada: " + fecha + ", " + materia + " - " + ("Presente" : "Ausente"));
+        System.out.println("Asistencia registrada: " + fecha + ", " + materia + " - " + (asistencia ?"Presente" : "Ausente"));
     }
 }
     

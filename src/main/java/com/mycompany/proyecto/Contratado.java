@@ -10,6 +10,23 @@ public class Contratado extends Docente{
         this.horasContratado=horasContratado;
         this.pagoHora=pagoHora;
     }
+
+    public int getHorasContratado() {
+        return horasContratado;
+    }
+
+    public void setHorasContratado(int horasContratado) {
+        this.horasContratado = horasContratado;
+    }
+
+    public double getPagoHora() {
+        return pagoHora;
+    }
+
+    public void setPagoHora(double pagoHora) {
+        this.pagoHora = pagoHora;
+    }
+    
     public void leer(){
         Scanner a =new Scanner(System.in);
         System.out.println("Ingrese las horas de contrato");

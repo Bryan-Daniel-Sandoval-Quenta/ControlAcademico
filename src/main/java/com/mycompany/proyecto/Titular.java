@@ -10,6 +10,23 @@ public class Titular extends Docente{
        this.antiguedadAños=antiguedadAños;
        this.nivelFormacion=nivelFormacion;
     }
+
+    public int getAntiguedadAños() {
+        return antiguedadAños;
+    }
+
+    public void setAntiguedadAños(int antiguedadAños) {
+        this.antiguedadAños = antiguedadAños;
+    }
+
+    public String getNivelFormacion() {
+        return nivelFormacion;
+    }
+
+    public void setNivelFormacion(String nivelFormacion) {
+        this.nivelFormacion = nivelFormacion;
+    }
+    
     public void leer(){
         Scanner b=new Scanner(System.in);
         System.out.println("Ingrese su antiguedad de años de trabajo");
