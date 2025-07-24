@@ -1,6 +1,13 @@
 package com.mycompany.proyecto;
 
+<<<<<<< HEAD
 public class Nota {
+=======
+import java.io.Serializable;
+import java.util.Scanner;
+
+public class Nota implements Serializable{
+>>>>>>> 680e56a7c0d43cc4fa530c60b13b9fbe1d4ad9bc
    
     private double valor;
     private String fecha;
@@ -8,7 +15,11 @@ public class Nota {
     private String tipoParcial;
     private Docente docenteEvaluador;
 
+<<<<<<< HEAD
     public Nota(String fecha, int ci, int registroUniv, String materia, String tipoParcial, Docente docenteEvaluador) {
+=======
+    public Nota(String fecha, String materia, String tipoParcial, Docente docenteEvaluador) {
+>>>>>>> 680e56a7c0d43cc4fa530c60b13b9fbe1d4ad9bc
         this.fecha = fecha;
         this.materia = materia;
         this.tipoParcial = tipoParcial;
@@ -56,13 +67,39 @@ public class Nota {
     }
 
     public void leer() {
+<<<<<<< HEAD
         System.out.println("Fecha: " + fecha);
         System.out.println("Materia: " + materia);
         System.out.println("Tipo de Parcial: " + tipoParcial);
         System.out.println("Docente Evaluador: " + docenteEvaluador.getNombre());
+=======
+        Scanner sc=new Scanner(System.in);
+    
+        System.out.println("Ingrese el valor:.  ");
+        valor=sc.nextInt();
+                
+        System.out.println("Ingrese la fecha: ");
+        fecha=sc.nextLine();
+        
+        System.out.println("Ingrese la materia: ");
+        materia=sc.nextLine();
+        
+        System.out.println("Ingrese Tipo de parcial: ");
+        tipoParcial=sc.nextLine();
+        
+        System.out.println("Ingrese los datos del docente: ");
+        docenteEvaluador.leer();
+       
+>>>>>>> 680e56a7c0d43cc4fa530c60b13b9fbe1d4ad9bc
     }
 
     public void mostrar() {
         System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial);
+<<<<<<< HEAD
+=======
+          if(docenteEvaluador != null){
+            System.out.println("Evaluador: " + docenteEvaluador.getNombre());
+      }
+>>>>>>> 680e56a7c0d43cc4fa530c60b13b9fbe1d4ad9bc
     }
 }
