@@ -32,14 +32,17 @@ public class Estudiante extends Persona implements Serializable{
     @Override
     public void mostrar(){
         super.mostrar();
-        System.out.println("registro universitario: " + registroUniversitario + ", carrera: " + carrera + ", nro de materias: " + nroMaterias);
+        System.out.println("registro universitario: " + registroUniversitario);
+        System.out.println("carrera: " + carrera);
+        System.out.println("nro de materias: " + nroMaterias);
         for(int i = 0; i < nroMaterias; i++){
-            System.out.println("materia " + i + ": " + materiasInscrito[i]);
+            System.out.println("materia " + (i+1) + ": " + materiasInscrito[i]);
         }
     }
     
     public void leer(){
         Scanner lec = new Scanner(System.in);
+        String mat = "";
         System.out.println("Ingrese nombre:.  ");
         this.nombre = lec.nextLine();
         
@@ -56,28 +59,16 @@ public class Estudiante extends Persona implements Serializable{
         
         System.out.println("Ingrese carrera:  ");
         this.carrera = lec.nextLine();
+        
+        System.out.println("Ingrese la cantidad de materias ya inscritas:  ");
+        this.setNroMaterias(lec.nextInt());
         lec.nextLine();
         
-        System.out.println("Ingrese la cantidad de materias inscritas:  ");
-        this.nroMaterias = lec.nextInt();
-        
         for (int i = 0; i < nroMaterias; i++){
-            materiasInscrito[i] = lec.nextLine();
+            System.out.println("Ingrese la materia nro: " + (i+1));
+            mat = lec.nextLine();
+            materiasInscrito[i] = mat;
         }
-        
-        /*System.out.println("Ingrese la cantidad de notas que registrara (maximo 4):  ");
-        int n = 0;
-        n = lec.nextInt();
-        for(int i = 0; i < n; i++){
-            this.registrarNota();
-        }
-        
-        System.out.println("Ingrese la cantidad de asistencias que registrara (maximo 4):  ");
-        int l = 0;
-        n = lec.nextInt();
-        for(int i = 0; i < l; i++){
-            this.registrarNota();
-        }*/
     }
     
     public void adicionarMateria(String materia){
