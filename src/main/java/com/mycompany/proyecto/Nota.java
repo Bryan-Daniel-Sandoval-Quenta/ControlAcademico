@@ -82,6 +82,6 @@ public class Nota implements Serializable{
     }
 
     public void mostrar() {
-        System.out.println("Nota registrada: " + fecha + ", " + materia + " - " + tipoParcial + " - " + valor + docenteEvaluador);
+        System.out.println("Fecha: " + fecha + ", " + materia + " - " + tipoParcial + " - " + "Nota: " + valor + " docente evaluador: " + docenteEvaluador);
     }
 }

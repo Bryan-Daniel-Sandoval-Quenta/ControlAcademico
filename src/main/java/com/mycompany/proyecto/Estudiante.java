@@ -66,6 +66,7 @@ public class Estudiante extends Persona implements Serializable{
     }
     
     public void leer(){
+        System.out.println("******Ingrese los datos del estudiante******");
         Scanner lec = new Scanner(System.in);
         String mat = "";
         System.out.println("Ingrese nombre:.  ");
@@ -94,6 +95,16 @@ public class Estudiante extends Persona implements Serializable{
             mat = lec.nextLine();
             materiasInscrito[i] = mat;
         }
+        
+        System.out.println("ingrese los datos de la nota del primer parcial");
+        Nota n = new Nota();
+        n.leer();
+        regisNota.agregar(n);
+        
+        System.out.println("ingrese los datos de la asistencia del primer parcial");
+        Asistencia a = new Asistencia();
+        a.leer();
+        regisAsistencia.agregar(a);
     }
     
     public void adicionarMateria(String materia){

@@ -1,6 +1,7 @@
 package com.mycompany.proyecto;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class Asistencia implements Serializable{
    
@@ -41,13 +42,20 @@ public class Asistencia implements Serializable{
     }
 
     public void leer() {
-        System.out.println("Fecha: " + fecha);
-        System.out.println("Asistencia: " + asistencia);
-        System.out.println("Materia: " + materia);
+        Scanner lec = new Scanner(System.in);
+        System.out.println("Ingrese la fecha: ");
+        fecha = lec.nextLine();
+        
+        System.out.println("Ingrese si asistio (true) si falto (false): ");
+        asistencia = lec.nextBoolean();
+        lec.nextLine();
+        
+        System.out.println("ingrese la materia del parcial: ");
+        materia = lec.nextLine();
     }
 
     public void mostrar() {
-        System.out.println("Asistencia registrada: " + fecha + ", " + materia);
+        System.out.println("Asistencia registrada: " + fecha + ", " + "materia: " + materia);
        if(asistencia){
               System.out.println("Presente");
     }else{
