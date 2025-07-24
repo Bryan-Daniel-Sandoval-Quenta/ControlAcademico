@@ -71,7 +71,7 @@ public class ArchEstudiante {
         }
     }
 
-    public void eliminar(int regUni) throws IOException, ClassNotFoundException {
+    public void eliminar(int ci) throws IOException, ClassNotFoundException {
         boolean eliminado = false;
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomArchEst));
@@ -79,7 +79,7 @@ public class ArchEstudiante {
 
             while (true) {
                 est = (Estudiante) in.readObject();
-                if (est.getRegistroUniversitario() == regUni) {
+                if (est.getCi() == ci) {
                     eliminado = true;
                 } else {
                     out.writeObject(est);

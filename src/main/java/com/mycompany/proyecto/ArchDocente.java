@@ -50,7 +50,7 @@ public class ArchDocente {
                 : new ObjectOutputStream(new FileOutputStream(nomArchDoc))) {
 
             out.writeObject(doc);
-            System.out.println("Docente añadido correctamente.");
+            System.out.println("Docente agregado correctamente.");
 
         } catch (IOException e) {
             System.out.println("Error al adicionar docente: " + e.getMessage());
