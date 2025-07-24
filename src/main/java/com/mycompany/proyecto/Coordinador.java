@@ -30,7 +30,7 @@ public class Coordinador extends Docente implements Serializable{
         
     }
     
-    
+    @Override
     public void mostrar()
     {   super.mostrar();
         System.out.println("Semestre para Coordinar: "+semestreCoordinado);

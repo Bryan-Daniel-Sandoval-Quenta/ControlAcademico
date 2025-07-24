@@ -19,7 +19,7 @@ public class Proyecto {
         //archEst.adicionarEstudiante(est1);
         //archDoc.adicionarDocente(DocCoo1);
         
-        archEst.adicionar();
+        //archEst.adicionar();
         archEst.listar();
         //archDoc.listar();
     }

@@ -27,10 +27,13 @@ public class Estudiante extends Persona implements Serializable{
         for(int i = 0; i < materiasInscrito.length; i++){
             materiasInscrito[i] = "";
         }
+        this.regisNota = new Registro<>("");
+        this.regisAsistencia = new Registro<>("");
     }
     
     @Override
     public void mostrar(){
+        System.out.println("DATOS DE ESTUDIANTE");
         super.mostrar();
         System.out.println("registro universitario: " + registroUniversitario);
         System.out.println("carrera: " + carrera);

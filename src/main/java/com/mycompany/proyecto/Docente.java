@@ -52,6 +52,7 @@ public class Docente extends Persona implements Serializable{
         super("", 0, 0);
     }
     
+    @Override
     public void leer()
     {   Scanner sc=new Scanner(System.in);
     
@@ -76,6 +77,7 @@ public class Docente extends Persona implements Serializable{
     
          
     }
+    @Override
     public void mostrar()
     {   super.mostrar();
         System.out.println("Tipo de Docente:"+tipoDocente);
